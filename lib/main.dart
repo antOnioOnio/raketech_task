@@ -5,13 +5,16 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:raketech_task/app/config/app_theme.dart';
 import 'package:raketech_task/app/di/di.dart' as app_di;
 import 'package:raketech_task/app/di/top_bloc_provider.dart';
+import 'package:raketech_task/app/extensions/context_extensions.dart';
+import 'package:raketech_task/presentation/features/splash/splash_controller.dart';
 import 'package:raketech_task/presentation/top_blocs/language_bloc/language_bloc.dart';
 import 'package:raketech_task/presentation/top_blocs/language_bloc/language_bloc_state.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   app_di.initDi();
+
   runApp(MyApp());
 }
 
@@ -36,9 +39,10 @@ class MyApp extends StatelessWidget {
             ],
             locale: state.locale,
             supportedLocales: const [
+              Locale('es', ''),
               Locale('en', ''),
             ],
-            home: Scaffold(),
+            home: const SplashController(),
           );
         },
       ),
