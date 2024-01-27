@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:raketech_task/app/config/app_theme.dart';
+import 'package:raketech_task/app/di/di.dart' as app_di;
+import 'package:raketech_task/app/di/top_bloc_provider.dart';
+import 'package:raketech_task/presentation/top_blocs/language_bloc/language_bloc.dart';
+import 'package:raketech_task/presentation/top_blocs/language_bloc/language_bloc_state.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  app_di.initDi();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,31 +21,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return TopBlocProviders(
+      child: BlocBuilder<LanguagesBloc, LanguageBlocState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme.myTheme,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            locale: state.locale,
+            supportedLocales: const [
+              Locale('en', ''),
+            ],
+            home: Scaffold(),
+          );
+        },
       ),
-      home: Container(),
     );
   }
 }
-
-/// 'https://cdn-icons-png.flaticon.com/512/2158/2158416.png'
