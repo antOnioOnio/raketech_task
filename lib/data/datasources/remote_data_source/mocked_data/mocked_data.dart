@@ -1,41 +1,42 @@
 import 'dart:math';
 
-import 'package:raketech_task/data/datasources/remote_data_source/mocked_data/dates.dart';
+import 'package:raketech_task/app/types/date_type.dart';
+import 'package:raketech_task/app/types/sport_type.dart';
 import 'package:raketech_task/data/datasources/remote_data_source/mocked_data/mocked_lists.dart';
-import 'package:raketech_task/data/datasources/remote_data_source/mocked_data/sport.dart';
 
-abstract class MockedData {
-  List<Map<String, dynamic>> createSportEventList() {
+class MockedDataGenerator {
+   List<Map<String, dynamic>> createSportEventListForDate(DateType date) {
     List<Map<String, dynamic>> toReturn = [];
 
     for (var i = 0; i < 30; i++) {
-      switch (Sport.values[Random().nextInt(Sport.values.length)]) {
-        case Sport.football:
-          _createRandomEVent(MockedLists.footBallTeams, Sport.football);
-          break;
-        case Sport.basketball:
-          _createRandomEVent(MockedLists.nbaTeams, Sport.basketball);
-          break;
-        case Sport.hockey:
-          _createRandomEVent(MockedLists.hockeyTeams, Sport.hockey);
-          break;
-      }
+      final sport = SportType.fromInt(Random().nextInt(3));
+
+      sport.when(
+        football: () =>
+            _createRandomEVent(MockedLists.footBallTeams, sport, date),
+        hockey: () => _createRandomEVent(MockedLists.nbaTeams, sport, date),
+        basketball: () =>
+            _createRandomEVent(MockedLists.hockeyTeams, sport, date),
+      );
     }
 
     return toReturn;
   }
 
-  Map<String, dynamic> _createRandomEVent(List<String> list, Sport sport) {
+  Map<String, dynamic> _createRandomEVent(
+    List<String> list,
+    SportType sport,
+    DateType date,
+  ) {
     String team1 = _getRandomElement(list, '');
     String team2 = _getRandomElement(list, team1);
-    String date = Date.values[Random().nextInt(Date.values.length)].name;
     String dateTime = _generateRandomTime();
 
     return {
       'league': sport.leagueName,
       'teams': '$team1 vs. $team2',
       'sportType': sport.name,
-      'dateStarting': date,
+      'dateStarting': date.name,
       'timeStarting': dateTime,
     };
   }
@@ -62,6 +63,7 @@ abstract class MockedData {
       }
     }
     // If the excluded element is the only one in the list, return empty string
+
     return '';
   }
 }
