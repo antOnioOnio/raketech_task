@@ -1,11 +1,12 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:raketech_task/app/types/date_type.dart';
 import 'package:raketech_task/app/types/sport_type.dart';
 import 'package:raketech_task/data/datasources/remote_data_source/mocked_data/mocked_lists.dart';
 
 class MockedDataGenerator {
-   List<Map<String, dynamic>> createSportEventListForDate(DateType date) {
+  List<Map<String, dynamic>> createSportEventListForDate(DateType date) {
     List<Map<String, dynamic>> toReturn = [];
 
     for (var i = 0; i < 30; i++) {
@@ -17,6 +18,7 @@ class MockedDataGenerator {
         hockey: () => _createRandomEVent(MockedLists.nbaTeams, sport, date),
         basketball: () =>
             _createRandomEVent(MockedLists.hockeyTeams, sport, date),
+        unknown: () => DoNothingAction(),
       );
     }
 
