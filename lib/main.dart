@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -35,3 +36,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+/// 'https://cdn-icons-png.flaticon.com/512/2158/2158416.png'
