@@ -5,7 +5,7 @@ import 'package:raketech_task/app/constants/app_assets.dart';
 import 'package:raketech_task/app/constants/app_colors.dart';
 import 'package:raketech_task/app/types/date_type.dart';
 import 'package:raketech_task/presentation/features/home/bloc/home_bloc.dart';
-import 'package:raketech_task/presentation/features/home/widgets/event_list_section.dart';
+import 'package:raketech_task/presentation/features/home/widgets/home_body.dart';
 import 'package:raketech_task/presentation/features/home/widgets/tab_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -59,9 +59,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 child: TabBarView(
                   controller: tabController,
                   children: const [
-                    EventListSection(dateType: DateType.yesterday()),
-                    EventListSection(dateType: DateType.today()),
-                    EventListSection(dateType: DateType.tomorrow()),
+                    HomeBody(dateType: DateType.yesterday()),
+                    HomeBody(dateType: DateType.today()),
+                    HomeBody(dateType: DateType.tomorrow()),
                   ],
                 ),
               ),

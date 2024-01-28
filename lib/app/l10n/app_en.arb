@@ -3,5 +3,6 @@
    "home_screen_title" : "Home",
    "yesterday_text" : "Yesterday",
    "today_text" : "Today",
-   "tomorrow_text" : "Tomorrow"
+   "tomorrow_text" : "Tomorrow",
+   "get_back_text" : "Go Back"
 }

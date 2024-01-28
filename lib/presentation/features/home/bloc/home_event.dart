@@ -7,4 +7,9 @@ class HomeEvent with _$HomeEvent {
 
   const factory HomeEvent.fetchEventDetails(String eventId) =
       _FetchEventDetails;
+
+  const factory HomeEvent.updateEventSelected({
+    required EventEntity? event,
+    required DateType dateType,
+  }) = _UpdatedEventSelected;
 }

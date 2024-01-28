@@ -25,8 +25,41 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         fetchEventsByDate: (date) =>
             _mapFetchDocumentEventToState(event, emit, date),
         fetchEventDetails: (eventId) => DoNothingAction(),
+        updateEventSelected: (eventEntity, dateType) =>
+            _mapUpdateEventSelectedEventToState(
+          event,
+          emit,
+          eventEntity,
+          dateType,
+        ),
       );
     });
+  }
+
+  FutureOr<void> _mapUpdateEventSelectedEventToState(
+    HomeEvent event,
+    Emitter<HomeState> emit,
+    EventEntity? eventEntity,
+    DateType dateType,
+  ) {
+    dateType.when(
+      yesterday: () => emit(
+        state.copyWith(
+          yesterdayEventSelected: eventEntity,
+        ),
+      ),
+      today: () => emit(
+        state.copyWith(
+          todayEventSelected: eventEntity,
+        ),
+      ),
+      tomorrow: () => emit(
+        state.copyWith(
+          tomorrowEventSelected: eventEntity,
+        ),
+      ),
+      unknown: () => DoNothingAction(),
+    );
   }
 
   FutureOr<void> _mapFetchDocumentEventToState(

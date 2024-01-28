@@ -1,4 +1,5 @@
 ﻿{
    "@@locale":"es",
-   "home_screen_title" : "Home"
+   "home_screen_title" : "Home",
+   "get_back_text" : "Go Back"
 }
