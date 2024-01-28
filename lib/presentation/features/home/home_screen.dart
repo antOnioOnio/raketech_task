@@ -40,33 +40,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     return DefaultTabController(
       length: 3,
       initialIndex: 1,
-      child: PopScope(
-        onPopInvoked: (_) => false,
-        child: Scaffold(
-          backgroundColor: AppColors.primaryWhite,
-          appBar: AppBar(
-            backgroundColor: AppColors.primary,
-            title: SvgPicture.asset(
-              AppAssets.appLogo,
-              height: 44,
-            ),
-            centerTitle: true,
+      child: Scaffold(
+        backgroundColor: AppColors.primaryWhite,
+        appBar: AppBar(
+          backgroundColor: AppColors.primary,
+          title: SvgPicture.asset(
+            AppAssets.appLogo,
+            height: 44,
           ),
-          body: Column(
-            children: [
-              HomeTabBar(controller: tabController),
-              Expanded(
-                child: TabBarView(
-                  controller: tabController,
-                  children: const [
-                    HomeBody(dateType: DateType.yesterday()),
-                    HomeBody(dateType: DateType.today()),
-                    HomeBody(dateType: DateType.tomorrow()),
-                  ],
-                ),
+          centerTitle: true,
+        ),
+        body: Column(
+          children: [
+            HomeTabBar(controller: tabController),
+            Expanded(
+              child: TabBarView(
+                controller: tabController,
+                children: const [
+                  HomeBody(dateType: DateType.yesterday()),
+                  HomeBody(dateType: DateType.today()),
+                  HomeBody(dateType: DateType.tomorrow()),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

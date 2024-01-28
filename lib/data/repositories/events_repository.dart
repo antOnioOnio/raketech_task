@@ -17,12 +17,29 @@ class EventsRepository implements EventsRepositoryContract {
     DateType dateType,
   ) async {
     try {
-      // Call the getInvoices method from the remote data source
+      // Call the method from the remote data source
       final data =
           await _eventsRemoteDataSourceContract.getEventsByDate(dateType);
 
       // Return the result mapped
       return Result.success(data.map((e) => e.toEventEntity()).toList());
+    } catch (error) {
+      // we would handle the proper error here
+      return const Result.failure(
+        error: RepositoryError.badRequest(),
+      );
+    }
+  }
+
+  @override
+  Future<Result<String>> getEventDescription(String eventId) async {
+    try {
+      // Call the method from the remote data source
+      final data =
+          await _eventsRemoteDataSourceContract.getEventDescription(eventId);
+
+      // Return the result mapped
+      return Result.success(data);
     } catch (error) {
       // we would handle the proper error here
       return const Result.failure(

@@ -11,4 +11,8 @@ class EventsRemoteDataSource implements EventsRemoteDataSourceContract {
   @override
   Future<List<EventRemoteEntity>> getEventsByDate(DateType dateType) async =>
       await _api.getEventsByDate(dateType);
+
+  @override
+  Future<String> getEventDescription(String eventId) async =>
+      await _api.getEventDescription(eventId);
 }

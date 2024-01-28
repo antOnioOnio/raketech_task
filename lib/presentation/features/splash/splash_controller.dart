@@ -13,10 +13,10 @@ class SplashController extends StatelessWidget {
     return BlocConsumer<SplashBloc, SplashState>(
       listener: (context, state) {
         if (state.isSplashed()) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()),
-          );
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => const HomeScreen(),
+            fullscreenDialog: true, // avoid swipe back
+          ));
         }
       },
       builder: (context, state) {

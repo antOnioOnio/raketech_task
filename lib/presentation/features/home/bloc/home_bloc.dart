@@ -24,7 +24,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       await event.when(
         fetchEventsByDate: (date) =>
             _mapFetchDocumentEventToState(event, emit, date),
-        fetchEventDetails: (eventId) => DoNothingAction(),
+        fetchEventDetails: (eventEntity, dateType) =>
+            _mapFetchEventDetailsToState(event, emit, eventEntity, dateType),
         updateEventSelected: (eventEntity, dateType) =>
             _mapUpdateEventSelectedEventToState(
           event,
@@ -60,6 +61,61 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
       unknown: () => DoNothingAction(),
     );
+
+    if (eventEntity != null) {
+      add(
+        HomeEvent.fetchEventDetails(
+          event: eventEntity,
+          dateType: dateType,
+        ),
+      );
+    }
+  }
+
+  FutureOr<void> _mapFetchEventDetailsToState(
+    HomeEvent event,
+    Emitter<HomeState> emit,
+    EventEntity? eventEntity,
+    DateType dateType,
+  ) async {
+    emit(state.copyWith(screenStatus: const ScreenStatus.loadingMore()));
+
+    final response = await _eventsRepositoryContract
+        .getEventDescription(eventEntity?.eventId ?? '');
+
+    response.when(
+      failure: (_) => emit(
+        state.copyWith(
+          screenStatus: const ScreenStatus.error(),
+        ),
+      ),
+      success: (description) {
+        final eventUpdated =
+            eventEntity?.copyWith(eventDescription: description);
+
+        dateType.when(
+          yesterday: () => emit(
+            state.copyWith(
+              yesterdayEventSelected: eventUpdated,
+              screenStatus: const ScreenStatus.initial(),
+            ),
+          ),
+          today: () => emit(
+            state.copyWith(
+              todayEventSelected: eventUpdated,
+              screenStatus: const ScreenStatus.initial(),
+            ),
+          ),
+          tomorrow: () => emit(
+            state.copyWith(
+              tomorrowEventSelected: eventUpdated,
+              screenStatus: const ScreenStatus.initial(),
+            ),
+          ),
+          unknown: () => DoNothingAction(),
+        );
+      },
+    );
   }
 
   FutureOr<void> _mapFetchDocumentEventToState(
@@ -74,10 +130,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     }
     emit(state.copyWith(screenStatus: const ScreenStatus.loading()));
 
-    final data =
+    final response =
         await _eventsRepositoryContract.getListOfEventsByDate(dateType);
 
-    data.when(
+    response.when(
       failure: (_) => emit(
         state.copyWith(
           screenStatus: const ScreenStatus.error(),

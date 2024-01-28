@@ -4,4 +4,6 @@ import 'package:raketech_task/domain/models/event_entity.dart';
 
 abstract class EventsRepositoryContract {
   Future<Result<List<EventEntity>>> getListOfEventsByDate(DateType dateType);
+
+  Future<Result<String>> getEventDescription(String eventId);
 }

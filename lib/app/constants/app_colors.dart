@@ -11,6 +11,7 @@ abstract class AppColors {
   static const Color semanticInformation = Color.fromRGBO(0, 87, 255, 1);
   static const Color naturalGrey = Color.fromRGBO(86, 95, 105, 1);
   static const Color naturalGrey2 = Color.fromRGBO(123, 123, 123, 1);
+  static const Color naturalGrey3 = Color.fromRGBO(88, 94, 103, 1);
   static const Color softGrey = Color.fromRGBO(240, 240, 240, 1);
   static const Color black = Color.fromRGBO(0, 0, 0, 1);
   static const Color disableBlack = Color.fromRGBO(24, 54, 78, 0.6);

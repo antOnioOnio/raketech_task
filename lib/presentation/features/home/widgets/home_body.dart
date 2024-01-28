@@ -19,36 +19,34 @@ class HomeBody extends StatelessWidget {
       builder: (context, state) {
         final eventList = state.getListByDate(dateType);
         final isLoading = state.screenStatus.isLoading();
+        final isFetchingDetails = state.screenStatus.isLoadingMore();
         final isEventSelected = state.getEventSelectedForDate(dateType) != null;
 
         return isLoading
-                ? const CustomCircularLoader()
-                : AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 400),
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) {
-                      return SlideTransition(
-                        position: Tween<Offset>(
-                          begin: Offset(isEventSelected ? 1.0 : -1.0, 0.0),
-                          end: Offset.zero,
-                        ).animate(animation),
-                        child: child,
-                      );
-                    }, // Animation duration
-                    child: isEventSelected
-                        ? EventDetails(
-                            event: state.getEventSelectedForDate(dateType) ??
-                                const EventEntity(),
-                            dateType: dateType,
-                          )
-                        : EvenListSection(
-                            eventList: eventList, dateType: dateType),
-                  ) /* isEventSelected
-                ? EventDetails(
-                    event: state.eventSelected ?? const EventEntity(),
-                  )
-                : EvenListSection(eventList: eventList, dateType: dateType)*/
-            ;
+            ? const CustomCircularLoader()
+            : AnimatedSwitcher(
+                duration: const Duration(milliseconds: 400),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return SlideTransition(
+                    position: Tween<Offset>(
+                      begin: Offset(isEventSelected ? 1.0 : -1.0, 0.0),
+                      end: Offset.zero,
+                    ).animate(animation),
+                    child: child,
+                  );
+                }, // Animation duration
+                child: isEventSelected
+                    ? EventDetails(
+                        event: state.getEventSelectedForDate(dateType) ??
+                            const EventEntity(),
+                        dateType: dateType,
+                        isFetchingDetails: isFetchingDetails,
+                      )
+                    : EvenListSection(
+                        eventList: eventList,
+                        dateType: dateType,
+                      ),
+              );
       },
     );
   }

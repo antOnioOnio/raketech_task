@@ -15,6 +15,7 @@ class EventEntity with _$EventEntity {
     SportType? sportType,
     DateType? date,
     String? timeStarting,
+    String? eventDescription,
   }) = _EventEntity;
 }
 
@@ -27,5 +28,6 @@ extension EventRemoteEntityExtension on EventRemoteEntity {
         sportType: SportType.fromString(sportType ?? ''),
         date: DateType.fromString(date ?? ''),
         timeStarting: timeStarting,
+        eventDescription: eventDescription,
       );
 }

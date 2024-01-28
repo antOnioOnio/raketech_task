@@ -10,13 +10,19 @@ import 'package:raketech_task/domain/models/event_entity.dart';
 import 'package:raketech_task/presentation/features/home/bloc/home_bloc.dart';
 import 'package:raketech_task/presentation/features/home/widgets/circular_text_container.dart';
 import 'package:raketech_task/presentation/features/widgets/app_divider.dart';
+import 'package:raketech_task/presentation/features/widgets/custom_circular_loader.dart';
 
 class EventDetails extends StatelessWidget {
   final EventEntity event;
   final DateType dateType;
+  final bool isFetchingDetails;
 
-  const EventDetails({Key? key, required this.event, required this.dateType})
-      : super(key: key);
+  const EventDetails({
+    Key? key,
+    required this.event,
+    required this.dateType,
+    required this.isFetchingDetails,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,26 +54,46 @@ class EventDetails extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 50.0, bottom: 24.0),
-              child: CircularTextContainer(text: event.league ?? ''),
-            ),
-            Text(
-              '${dateType.name} | ${event.timeStarting}',
-              style: AppFonts.bodySdBold,
-            ),
-            Text(
-              event.teams ?? '',
-              style: AppFonts.bodyMdBold,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 16.0, bottom: 24.0),
-              child: AppDivider(),
-            ),
-            Image.network(
-              event.iconUrl ?? '',
-              width: 46,
-              height: 46,
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 50.0, bottom: 24.0),
+                      child: CircularTextContainer(text: event.league ?? ''),
+                    ),
+                    Text(
+                      '${dateType.name} | ${event.timeStarting}',
+                      style: AppFonts.bodySdBold,
+                    ),
+                    Text(
+                      event.teams ?? '',
+                      style: AppFonts.bodyMdBold,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 16.0, bottom: 24.0),
+                      child: AppDivider(),
+                    ),
+                    Image.network(
+                      event.iconUrl ?? '',
+                      width: 46,
+                      height: 46,
+                    ),
+                    isFetchingDetails
+                        ? const SizedBox(
+                            height: 300,
+                            child: CustomCircularLoader(),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: Text(
+                              event.eventDescription ?? '',
+                              style: AppFonts.bodyMLdLight,
+                            ),
+                          ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

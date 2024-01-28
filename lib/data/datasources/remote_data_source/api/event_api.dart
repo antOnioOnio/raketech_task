@@ -18,4 +18,11 @@ class EventsApi {
 
     return mockedResponse.map((e) => EventRemoteEntity.fromJson(e)).toList();
   }
+
+  Future<String> getEventDescription(String eventId) async {
+    ///Faked delay
+    await Future.delayed(const Duration(seconds: 1));
+
+    return _dataGenerator.getRandomDescription();
+  }
 }

@@ -7,6 +7,9 @@ import 'package:raketech_task/data/datasources/remote_data_source/mocked_data/mo
 import 'package:uuid/uuid.dart';
 
 class MockedDataGenerator {
+  String getRandomDescription() =>
+      _getRandomElement(MockedLists.eventsDescriptions, '');
+
   List<Map<String, dynamic>> createSportEventListForDate(DateType date) {
     List<Map<String, dynamic>> toReturn = [];
 
@@ -61,7 +64,8 @@ class MockedDataGenerator {
   }
 
   String _getRandomElement(List<String> list, String excludedItem) {
-    List<String> filteredList = list.where((item) => item != excludedItem).toList();
+    List<String> filteredList =
+        list.where((item) => item != excludedItem).toList();
 
     // Check if there are items left after excluding
     if (filteredList.isEmpty) {
@@ -75,6 +79,4 @@ class MockedDataGenerator {
     // Return the randomly selected item
     return filteredList[randomIndex];
   }
-
-
 }
