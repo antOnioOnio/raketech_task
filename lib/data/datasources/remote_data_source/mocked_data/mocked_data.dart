@@ -60,21 +60,21 @@ class MockedDataGenerator {
     return '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
   }
 
-  String _getRandomElement(List<String> list, String exclude) {
-    final random = Random();
+  String _getRandomElement(List<String> list, String excludedItem) {
+    List<String> filteredList = list.where((item) => item != excludedItem).toList();
 
-    final listToShuffle = [...list];
-    // Shuffle the list to randomize the order
-    listToShuffle.shuffle(random);
-    // Iterate through the shuffled list
-    for (String element in list) {
-      // Return a random element if it's not the excluded one
-      if (element != exclude) {
-        return element;
-      }
+    // Check if there are items left after excluding
+    if (filteredList.isEmpty) {
+      throw ArgumentError('Excluded item is the only item in the list.');
     }
-    // If the excluded element is the only one in the list, return empty string
 
-    return '';
+    // Generate a random index within the filtered list
+    Random random = Random();
+    int randomIndex = random.nextInt(filteredList.length);
+
+    // Return the randomly selected item
+    return filteredList[randomIndex];
   }
+
+
 }

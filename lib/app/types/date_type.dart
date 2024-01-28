@@ -29,6 +29,21 @@ class DateType with _$DateType {
     ///should not happen as we cover all possible scenarios
     return const DateType.unknown();
   }
+
+  ///added to be able to transform integer tab to datetype
+  factory DateType.fromInt(int i) {
+    switch (i) {
+      case 0:
+        return const DateType.yesterday();
+      case 1:
+        return const DateType.today();
+      case 2:
+        return const DateType.tomorrow();
+    }
+
+    ///should not happen as we cover all possible scenarios
+    return const DateType.unknown();
+  }
 }
 
 extension DateTypeExtension on DateType {

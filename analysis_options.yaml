@@ -55,9 +55,9 @@ dart_code_metrics:
           - init-state-method
           - var-fields
           - init-state-method
-          - private-methods
           - overridden-public-methods
           - build-method
+          - private-methods
 
     - always-remove-listener
     - avoid-wrapping-in-padding

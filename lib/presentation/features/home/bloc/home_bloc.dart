@@ -52,9 +52,24 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       ),
       success: (events) {
         dateType.when(
-          yesterday: () => emit(state.copyWith(yesterdayEvents: events)),
-          today: () => emit(state.copyWith(todayEvents: events)),
-          tomorrow: () => emit(state.copyWith(tomorrowEvents: events)),
+          yesterday: () => emit(
+            state.copyWith(
+              yesterdayEvents: events,
+              screenStatus: const ScreenStatus.initial(),
+            ),
+          ),
+          today: () => emit(
+            state.copyWith(
+              todayEvents: events,
+              screenStatus: const ScreenStatus.initial(),
+            ),
+          ),
+          tomorrow: () => emit(
+            state.copyWith(
+              tomorrowEvents: events,
+              screenStatus: const ScreenStatus.initial(),
+            ),
+          ),
           unknown: () => DoNothingAction(),
         );
       },

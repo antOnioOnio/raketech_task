@@ -12,7 +12,7 @@ class EventsApi {
   /// as we don't have a proper API.
   Future<List<EventRemoteEntity>> getEventsByDate(DateType dateType) async {
     ///Faked delay
-    await Future.delayed(const Duration(milliseconds: 400));
+    await Future.delayed(const Duration(seconds: 1));
 
     final mockedResponse = _dataGenerator.createSportEventListForDate(dateType);
 
