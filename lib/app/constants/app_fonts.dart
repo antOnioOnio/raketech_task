@@ -1,11 +1,26 @@
+import 'package:flutter/material.dart';
+import 'package:raketech_task/app/constants/app_colors.dart';
+
 class AppFonts {
-/*  static const TextStyle heading2 = TextStyle(
-    fontFamily: 'Merriweather',
+  static const TextStyle heading2 = TextStyle(
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400,
+    color: AppColors.naturalGrey,
+    fontSize: 10,
+  );
+  static const TextStyle bodyMdBold = TextStyle(
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w400,
+    color: AppColors.black,
+    fontSize: 18,
+  );
+  static const TextStyle bodySdBold = TextStyle(
+    fontFamily: 'Inter',
     fontWeight: FontWeight.w700,
     color: AppColors.black,
-    fontSize: 19,
+    fontSize: 8,
   );
-  static const TextStyle heading3 = TextStyle(
+/*   static const TextStyle heading3 = TextStyle(
     fontFamily: 'Merriweather',
     fontWeight: FontWeight.w900,
     color: AppColors.black,
@@ -15,12 +30,6 @@ class AppFonts {
     fontFamily: 'Merriweather',
     fontWeight: FontWeight.w900,
     color: AppColors.black,
-    fontSize: 20,
-  );
-  static const TextStyle bodyMdBold = TextStyle(
-    fontFamily: 'Nunito Sans',
-    fontWeight: FontWeight.w700,
-    color: AppColors.secondaryBlack,
     fontSize: 20,
   );
   static const TextStyle heading5 = TextStyle(

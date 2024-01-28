@@ -35,6 +35,7 @@ class MockedDataGenerator {
     String dateTime = _generateRandomTime();
 
     return {
+      'iconUrl': 'https://cdn-icons-png.flaticon.com/512/2158/2158416.png',
       'league': sport.leagueName,
       'teams': '$team1 vs. $team2',
       'sportType': sport.name,

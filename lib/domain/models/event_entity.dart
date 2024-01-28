@@ -8,6 +8,7 @@ part 'event_entity.freezed.dart';
 @freezed
 class EventEntity with _$EventEntity {
   const factory EventEntity({
+    String? iconUrl,
     String? league,
     String? teams,
     SportType? sportType,
@@ -18,6 +19,7 @@ class EventEntity with _$EventEntity {
 
 extension EventRemoteEntityExtension on EventRemoteEntity {
   EventEntity toEventEntity() => EventEntity(
+        iconUrl: iconUrl,
         league: league,
         teams: teams,
         sportType: SportType.fromString(sportType ?? ''),
