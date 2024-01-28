@@ -23,7 +23,7 @@ class EventListSection extends StatelessWidget {
                   width: 46,
                   height: 46,
                 ),
-                title: Text(
+                title: const Text(
                   'Today | 12:45 - 14:45',
                   style: AppFonts.bodySdBold,
                 ),
@@ -34,11 +34,11 @@ class EventListSection extends StatelessWidget {
                 trailing: Container(
                   width: 54,
                   height: 54,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: AppColors.complementary,
                     shape: BoxShape.circle,
                   ),
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('Lega'),
@@ -46,8 +46,9 @@ class EventListSection extends StatelessWidget {
                     ],
                   ),
                 ),
+                onTap: () => DoNothingAction(),
               ),
-              Divider(
+              const Divider(
                 indent: 16.0,
                 endIndent: 16,
                 color: AppColors.softGrey,

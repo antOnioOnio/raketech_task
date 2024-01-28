@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:raketech_task/app/types/date_type.dart';
 import 'package:raketech_task/app/types/sport_type.dart';
 import 'package:raketech_task/data/datasources/remote_data_source/mocked_data/mocked_lists.dart';
+import 'package:uuid/uuid.dart';
 
 class MockedDataGenerator {
   List<Map<String, dynamic>> createSportEventListForDate(DateType date) {
@@ -13,11 +14,15 @@ class MockedDataGenerator {
       final sport = SportType.fromInt(Random().nextInt(3));
 
       sport.when(
-        football: () =>
-            _createRandomEVent(MockedLists.footBallTeams, sport, date),
-        hockey: () => _createRandomEVent(MockedLists.nbaTeams, sport, date),
-        basketball: () =>
-            _createRandomEVent(MockedLists.hockeyTeams, sport, date),
+        football: () => toReturn.add(
+          _createRandomEVent(MockedLists.footBallTeams, sport, date),
+        ),
+        hockey: () => toReturn.add(
+          _createRandomEVent(MockedLists.nbaTeams, sport, date),
+        ),
+        basketball: () => toReturn.add(
+          _createRandomEVent(MockedLists.hockeyTeams, sport, date),
+        ),
         unknown: () => DoNothingAction(),
       );
     }
@@ -35,6 +40,7 @@ class MockedDataGenerator {
     String dateTime = _generateRandomTime();
 
     return {
+      'eventId': const Uuid().v4(),
       'iconUrl': 'https://cdn-icons-png.flaticon.com/512/2158/2158416.png',
       'league': sport.leagueName,
       'teams': '$team1 vs. $team2',
@@ -56,8 +62,10 @@ class MockedDataGenerator {
 
   String _getRandomElement(List<String> list, String exclude) {
     final random = Random();
+
+    final listToShuffle = [...list];
     // Shuffle the list to randomize the order
-    list.shuffle(random);
+    listToShuffle.shuffle(random);
     // Iterate through the shuffled list
     for (String element in list) {
       // Return a random element if it's not the excluded one

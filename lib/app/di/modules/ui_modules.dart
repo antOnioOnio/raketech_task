@@ -9,4 +9,7 @@ void _uiModulesInit() {
   uiModulesDi.registerFactory(
     () => SplashBloc(),
   );
+  uiModulesDi.registerFactory(
+    () => HomeBloc(eventsRepositoryContract: uiModulesDi()),
+  );
 }

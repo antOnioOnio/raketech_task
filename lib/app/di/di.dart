@@ -5,6 +5,7 @@ import 'package:raketech_task/data/datasources/remote_data_source/mocked_data/mo
 import 'package:raketech_task/data/repositories/data_source_contracts/remote/events_remote_data_source_contract.dart';
 import 'package:raketech_task/data/repositories/events_repository.dart';
 import 'package:raketech_task/domain/repositoriy_contracts/events_repository_contract.dart';
+import 'package:raketech_task/presentation/features/home/bloc/home_bloc.dart';
 import 'package:raketech_task/presentation/features/splash/splash_bloc/splash_bloc.dart';
 import 'package:raketech_task/presentation/top_blocs/language_bloc/language_bloc.dart';
 
