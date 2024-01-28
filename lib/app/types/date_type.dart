@@ -16,6 +16,8 @@ class DateType with _$DateType {
 
   const factory DateType.unknown() = _Unknown;
 
+  ///Constructor to build our sport from a string coming from our
+  ///service
   factory DateType.fromString(String sportName) {
     switch (sportName) {
       case _yesterday:

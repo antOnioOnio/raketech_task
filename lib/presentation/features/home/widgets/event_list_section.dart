@@ -48,7 +48,9 @@ class EvenListSection extends StatelessWidget {
                 trailing: CircularTextContainer(text: event.league ?? ''),
                 onTap: () => context.read<HomeBloc>().add(
                       HomeEvent.updateEventSelected(
-                          event: event, dateType: dateType),
+                        event: event,
+                        dateType: dateType,
+                      ),
                     ),
               ),
               const AppDivider(),

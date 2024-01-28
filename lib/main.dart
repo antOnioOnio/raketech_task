@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:raketech_task/app/config/app_theme.dart';
+import 'package:raketech_task/app/constants/app_constants.dart';
 import 'package:raketech_task/app/di/di.dart' as app_di;
 import 'package:raketech_task/app/di/top_bloc_provider.dart';
 import 'package:raketech_task/presentation/features/splash/splash_controller.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<LanguagesBloc, LanguageBlocState>(
         builder: (context, state) {
           return MaterialApp(
-            title: 'Flutter Demo',
+            title: AppConstants.appName,
             debugShowCheckedModeBanner: false,
             theme: AppTheme.myTheme,
             localizationsDelegates: const [
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
               Locale('es', ''),
               Locale('en', ''),
             ],
-            home: SplashController(),
+            home: const SplashController(),
           );
         },
       ),

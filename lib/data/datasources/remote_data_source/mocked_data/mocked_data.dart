@@ -7,6 +7,8 @@ import 'package:raketech_task/data/datasources/remote_data_source/mocked_data/mo
 import 'package:uuid/uuid.dart';
 
 class MockedDataGenerator {
+  ///
+  ///
   String getRandomDescription() =>
       _getRandomElement(MockedLists.eventsDescriptions, '');
 
@@ -33,6 +35,8 @@ class MockedDataGenerator {
     return toReturn;
   }
 
+  ///
+  ///
   Map<String, dynamic> _createRandomEVent(
     List<String> list,
     SportType sport,
@@ -53,6 +57,8 @@ class MockedDataGenerator {
     };
   }
 
+  ///
+  ///
   String _generateRandomTime() {
     final random = Random();
     // Generate random hours (0-23) and minutes (0-59)
@@ -63,6 +69,8 @@ class MockedDataGenerator {
     return '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
   }
 
+  ///
+  ///
   String _getRandomElement(List<String> list, String excludedItem) {
     List<String> filteredList =
         list.where((item) => item != excludedItem).toList();

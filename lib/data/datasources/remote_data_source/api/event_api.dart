@@ -8,10 +8,10 @@ class EventsApi {
   EventsApi({required MockedDataGenerator dataGenerator})
       : _dataGenerator = dataGenerator;
 
-  /// This method return a lsit of EventRemoteEntity, it is just mocked for the moment
+  /// This method return a list of EventRemoteEntity, it is just mocked for the moment
   /// as we don't have a proper API.
   Future<List<EventRemoteEntity>> getEventsByDate(DateType dateType) async {
-    ///Faked delay
+    //Faked delay
     await Future.delayed(const Duration(seconds: 1));
 
     final mockedResponse = _dataGenerator.createSportEventListForDate(dateType);
@@ -19,8 +19,10 @@ class EventsApi {
     return mockedResponse.map((e) => EventRemoteEntity.fromJson(e)).toList();
   }
 
+  /// This method return an event description, it is just mocked for the moment
+  /// as we don't have a proper API.
   Future<String> getEventDescription(String eventId) async {
-    ///Faked delay
+    //Faked delay
     await Future.delayed(const Duration(seconds: 1));
 
     return _dataGenerator.getRandomDescription();

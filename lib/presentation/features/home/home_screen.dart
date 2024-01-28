@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    //needed to be able to control and trigger events based on swipe gestures
     tabController = TabController(
       initialIndex: 1,
       length: 3,

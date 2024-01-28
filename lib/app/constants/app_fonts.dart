@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:raketech_task/app/constants/app_colors.dart';
 
 class AppFonts {
+  static const TextStyle heading1white = TextStyle(
+    fontFamily: 'Inter',
+    fontWeight: FontWeight.w200,
+    color: AppColors.primary200,
+    fontSize: 35,
+  );
   static const TextStyle heading2 = TextStyle(
     fontFamily: 'Inter',
     fontWeight: FontWeight.w400,
@@ -32,5 +38,4 @@ class AppFonts {
     color: AppColors.black,
     fontSize: 8,
   );
-
 }

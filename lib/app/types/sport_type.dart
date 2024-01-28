@@ -16,6 +16,8 @@ class SportType with _$SportType {
 
   const factory SportType.unknown() = _Unknown;
 
+  ///Constructor to build our sport from a string coming from our
+  ///service
   factory SportType.fromString(String sportName) {
     switch (sportName) {
       case _footballName:
