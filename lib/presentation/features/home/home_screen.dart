@@ -55,42 +55,52 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
           body: Column(
             children: [
-              SizedBox(
-                height: 28,
-                child: TabBar(
-                  controller: tabController,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicatorColor: Colors.transparent,
-                  indicator: const UnderlineTabIndicator(
-                    borderSide: BorderSide(
-                      width: 2,
-                      color: AppColors.secondary,
-                    ),
-                  ),
-                  padding: EdgeInsets.zero,
-                  labelStyle: AppFonts.heading2,
-                  tabAlignment: TabAlignment.center,
-                  labelColor: AppColors.secondary,
-                  unselectedLabelColor: AppColors.naturalGrey,
-                  dividerColor: Colors.transparent,
-                  tabs: [
-                    Tab(
-                      child: Text(
-                        context.localizations.yesterday_text.toUpperCase(),
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        context.localizations.today_text.toUpperCase(),
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        context.localizations.tomorrow_text.toUpperCase(),
+              Container(
+                width: double.infinity,
+                color: AppColors.primary200,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 28,
+                      child: TabBar(
+                        controller: tabController,
+                        indicatorSize: TabBarIndicatorSize.label,
+                        indicatorColor: Colors.transparent,
+                        indicator: const UnderlineTabIndicator(
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: AppColors.secondary,
+                          ),
+                        ),
+                        padding: EdgeInsets.zero,
+                        labelStyle: AppFonts.heading2,
+                        tabAlignment: TabAlignment.center,
+                        labelColor: AppColors.secondary,
+                        unselectedLabelColor: AppColors.naturalGrey,
+                        dividerColor: Colors.transparent,
+                        tabs: [
+                          Tab(
+                            child: Text(
+                              context.localizations.yesterday_text
+                                  .toUpperCase(),
+                            ),
+                          ),
+                          Tab(
+                            child: Text(
+                              context.localizations.today_text.toUpperCase(),
+                            ),
+                          ),
+                          Tab(
+                            child: Text(
+                              context.localizations.tomorrow_text.toUpperCase(),
+                            ),
+                          ),
+                        ],
+                        onTap: (newTabIndex) => DoNothingAction(),
                       ),
                     ),
                   ],
-                  onTap: (newTabIndex) => DoNothingAction(),
                 ),
               ),
               Expanded(
@@ -112,9 +122,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   void _handleSelected() {
     context.read<HomeBloc>().add(
-      HomeEvent.fetchEventsByDate(
-        DateType.fromInt(tabController.index),
-      ),
-    );
+          HomeEvent.fetchEventsByDate(
+            DateType.fromInt(tabController.index),
+          ),
+        );
   }
 }
